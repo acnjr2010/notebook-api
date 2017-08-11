@@ -21,6 +21,14 @@ namespace :dev do
     end
     puts "Finalizando os cadastros com sucesso!"
 
+    puts "Cadastrando Telefones"
+    Contact.all.map do |contact|
+      Random.rand(5).times do |i|
+        phone = Phone.create!(number: Faker::PhoneNumber.cell_phone, contact: contact)
+      end
+    end
+    puts "Finalizando o cadastro de telefones"
+
   end
 
 end

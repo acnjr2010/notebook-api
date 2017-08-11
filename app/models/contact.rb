@@ -1,14 +1,21 @@
 class Contact < ApplicationRecord
   belongs_to :kind#, optional: true
+  has_many :phones
 
-  def to_br
-    {
-      name: self.name,
-      email: self.email,
-      birthdate: (I18n.l(self.birthdate) unless self.birthdate.blank?),
-      kind_id: Kind.all.sample
-    }
+  def as_json(options={})
+    hsh = super(options)
+    hsh[:birthdate] = (I18n.l(self.birthdate) unless self.birthdate.blank?)
+    hsh
   end
+
+  # def to_br
+  #   {
+  #     name: self.name,
+  #     email: self.email,
+  #     birthdate: (I18n.l(self.birthdate) unless self.birthdate.blank?),
+  #     kind_id: Kind.all.sample
+  #   }
+  # end
 
   # def author
   #   "Antonio Carlos"
