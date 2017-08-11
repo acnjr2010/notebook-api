@@ -4,8 +4,9 @@ class Contact < ApplicationRecord
   has_one :address
 
   # Permite que os itens aninhados sejam excluídos
-  accepts_nested_attributes_for :phones, aloow_destroy: true
-  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :phones, allow_destroy: true
+  # update_only não permite que crie um novo somente atualizar o que ja existe
+  accepts_nested_attributes_for :address, update_only: true
 
   def as_json(options={})
     hsh = super(options)
