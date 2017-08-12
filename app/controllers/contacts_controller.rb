@@ -10,7 +10,13 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1
   def show
-    render json: @contact, include: [:kind, :phones]
+    # o include usando active_model_serializers cria uma chave chamada included no final do json
+    # trazendo informações sobre essa associação, include muito utilizado no belongs_to
+
+    # meta cria uma informação sobre o proprio retorno, ele virá no mesmo lugar que o include, porém em chaves diferente,
+    # para criar para todo o json siga o exemplo do serializer Contaact
+
+    render json: @contact, include: [:kind]#, meta: { author: "Antonio Carlos" }#, include: [:kind, :phones]
   end
 
   # POST /contacts

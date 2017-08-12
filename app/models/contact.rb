@@ -1,12 +1,12 @@
 class Contact < ApplicationRecord
   belongs_to :kind#, optional: true
   has_many :phones
-  has_one :address
+  has_one :adddress
 
   # Permite que os itens aninhados sejam excluídos
   accepts_nested_attributes_for :phones, allow_destroy: true
   # update_only não permite que crie um novo somente atualizar o que ja existe
-  accepts_nested_attributes_for :address, update_only: true
+  accepts_nested_attributes_for :adddress, update_only: true
 
   def as_json(options={})
     hsh = super(options)
