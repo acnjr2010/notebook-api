@@ -59,6 +59,8 @@ class ContactsController < ApplicationController
                     #"_destroy"
                   #}
                 #]
-      params.require(:contact).permit(:name, :email, :birthdate, :kind_id, phones_attributes: [:id, :number, :_destroy])
+      #params.require(:contact).permit(:name, :email, :birthdate, :kind_id, phones_attributes: [:id, :number, :_destroy])
+      # Transformar um json em um formato que o rails reconheça
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params)
     end
 end
