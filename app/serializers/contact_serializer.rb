@@ -8,7 +8,10 @@ class ContactSerializer < ActiveModel::Serializer
   has_many :phones do
     link(:related) { contact_phones_url(object.kind.id) }
   end
-  has_one :adddress
+
+  has_one :adddress do
+    link(:related) { contact_adddresses_url(object.kind.id) }
+  end
 
   #links no json HATEOAS
   # dessa forma ele coloca somente o endereço sem o localhost
